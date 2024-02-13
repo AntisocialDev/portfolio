@@ -27,9 +27,9 @@ const NavBar = () => {
         onClick={() => setMenuTapped(!menuTapped)}
         className="flex flex-col gap-3 cursor-pointer md:hidden menu-div"
       >
-        <motion.div animate={{ rotateZ: menuTapped ? 50 : 0 ,y: menuTapped? 7: 0}}></motion.div>
+        <motion.div animate={{ rotateZ: menuTapped ? 50 : 0 ,y: menuTapped? 7.5: 0}}></motion.div>
         {!menuTapped && <div></div>}
-        <motion.div animate={{ rotateZ: menuTapped ? -50 : 0 , y: menuTapped? -7: 0}}></motion.div>
+        <motion.div animate={{ rotateZ: menuTapped ? -50 : 0 , y: menuTapped? -7.5: 0}}></motion.div>
       </div>
       <div className="hidden md:flex items-center font-medium gap-8">
         <p>Projects</p>
