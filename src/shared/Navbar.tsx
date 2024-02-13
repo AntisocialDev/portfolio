@@ -14,7 +14,7 @@ const NavBar = () => {
       className="flex justify-between items-center gap-8 p-10 navbar"
     >
       <div className="flex items-center gap-5">
-        <Image className="w-[50px] sm:w-[30px]"
+        <Image className="w-[30px] sm:w-[30px]"
           src="/icons/home.svg"
           alt="theme toogle"
           width={100}
