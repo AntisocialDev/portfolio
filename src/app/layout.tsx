@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex flex-col h-full w-full overflow-x-hidden">
           <NavBar />
-          {children}
+          <div className="mt-[60px]">{children}</div>
           <Footer />
         </div>
       </body>

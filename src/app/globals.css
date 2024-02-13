@@ -65,9 +65,14 @@ button {
 }
 
 .navbar {
+  position: fixed;
+  top: 0;
+  z-index: 100000;
+  width: 100%;
+  overflow: hidden;
   border-bottom: solid 1px #ffffff;
   height: 80px;
-  background-color: transparent;
+  background-color: #ffffff;
   border-bottom: solid 1.5px #e5e8eb;
 }
 
