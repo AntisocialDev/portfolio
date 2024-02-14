@@ -169,9 +169,9 @@ export default function Home() {
                   ? "cursor-pointer"
                   : "cursor-default"
               }
-              onClick={() => {
+              onClick={(e) => {
                 if (contact.title === "Location") {
-                  event?.preventDefault();
+                  e.preventDefault();
                   return false;
                 }
               }}
