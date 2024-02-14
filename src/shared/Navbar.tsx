@@ -1,11 +1,30 @@
 "use client";
 
+import { toggleSidebar } from "@/reducers/sidebar-slice";
+import { RootState } from "@/store/app-store";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Root } from "postcss";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = () => {
-  const [menuTapped, setMenuTapped] = useState<boolean>(false);
+  const isSidebarOpened = useSelector(
+    (state: RootState) => state.sidebar.isOpen
+  );
+  const dispatch = useDispatch();
+
+  const menuClick = async () => {  
+    await dispatch(toggleSidebar());
+    if(!isSidebarOpened){
+      document.querySelector("body")!.style.overflow = 'hidden';
+    }else if(isSidebarOpened){
+      document.querySelector("body")!.style.overflow = 'auto';
+
+    }
+  };
+
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -14,7 +33,8 @@ const NavBar = () => {
       className="flex justify-between items-center gap-8 p-10 navbar"
     >
       <div className="flex items-center gap-5">
-        <Image className="w-[30px] sm:w-[30px]"
+        <Image
+          className="w-[30px] sm:w-[30px]"
           src="/icons/home.svg"
           alt="theme toogle"
           width={100}
@@ -24,12 +44,24 @@ const NavBar = () => {
         <p className="hidden sm:block font-bold text-2xl">Victor Banjo</p>
       </div>
       <div
-        onClick={() => setMenuTapped(!menuTapped)}
+        onClick={() => {
+          menuClick();
+        }}
         className="flex flex-col gap-3 cursor-pointer md:hidden menu-div"
       >
-        <motion.div animate={{ rotateZ: menuTapped ? 50 : 0 ,y: menuTapped? 7.5: 0}}></motion.div>
-        {!menuTapped && <div></div>}
-        <motion.div animate={{ rotateZ: menuTapped ? -50 : 0 , y: menuTapped? -7.5: 0}}></motion.div>
+        <motion.div
+          animate={{
+            rotateZ: isSidebarOpened ? 50 : 0,
+            y: isSidebarOpened ? 7.5 : 0,
+          }}
+        ></motion.div>
+        {!isSidebarOpened && <div></div>}
+        <motion.div
+          animate={{
+            rotateZ: isSidebarOpened ? -50 : 0,
+            y: isSidebarOpened ? -7.5 : 0,
+          }}
+        ></motion.div>
       </div>
       <div className="hidden md:flex items-center font-medium gap-8">
         <p>Projects</p>
