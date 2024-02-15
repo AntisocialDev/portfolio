@@ -16,16 +16,12 @@ const NavBar = () => {
 
   const menuClick = async () => {
     await dispatch(toggleSidebar());
-    if (!isSidebarOpened) {
-      document.querySelector("body")!.style.overflow = "hidden";
-    } else if (isSidebarOpened) {
-      document.querySelector("body")!.style.overflow = "auto";
-    }
+   
   };
 
   const scrolltoHash =  (element_id: string) => {
     const element = document.getElementById(element_id)
-    element?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+    window.scrollTo({left: 0, top: element!.offsetTop - document.getElementsByClassName('navbar')[0].clientHeight, behavior: 'smooth'});
   }
 
 
@@ -70,9 +66,9 @@ const NavBar = () => {
         ></motion.div>
       </div>
       <div className="hidden md:flex items-center font-medium gap-8">
-        <p className="cursor-pointer" onClick={()=>scrolltoHash('project-session')}>Projects</p>
-        <p className="cursor-pointer" onClick={()=>scrolltoHash('skills-session')}>Skills</p>
-        <p className="cursor-pointer" onClick={()=>scrolltoHash('contact-session')}>Contact</p>
+        <p className="cursor-pointer" onClick={()=>scrolltoHash('project-section')}>Projects</p>
+        <p className="cursor-pointer" onClick={()=>scrolltoHash('skills-section')}>Skills</p>
+        <p className="cursor-pointer" onClick={()=>scrolltoHash('contact-section')}>Contact</p>
         <div className="flex cursor-pointer items-center justify-center w-[45px] h-[45px] p-3 bg-[#E8EDF2] rounded-[12px]">
           <Image
             src="/icons/theme-icon.svg"

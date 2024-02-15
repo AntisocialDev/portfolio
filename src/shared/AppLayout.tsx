@@ -22,11 +22,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
           onClick={async () => {
             if (isSidebarOpened) {
               await dispatch(toggleSidebar());
-              if (!isSidebarOpened) {
-                document.querySelector("body")!.style.overflow = "hidden";
-              } else if (isSidebarOpened) {
-                document.querySelector("body")!.style.overflow = "auto";
-              }
+             
             }
           }}
           className="mt-[60px]"
