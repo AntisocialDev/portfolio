@@ -37,12 +37,12 @@ export default function Home() {
     {
       image: "/icons/linkedin.png",
       title: "LinkedIn",
-      details: "linkedin.com/in/victor-banjo-935088163",
+      details: "https://www.linkedin.com/in/victor-banjo-935088163",
     },
     {
       image: "/icons/github.png",
       title: "GitHub",
-      details: "github.com/AntisocialDev",
+      details: "https://www.github.com/AntisocialDev",
     },
   ];
 
@@ -94,7 +94,7 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-      <section>
+      <section id="project-session">
         <h2 className="text-2xl font-bold">Latest Projects</h2>
         <div className="flex flex-col gap-y-20 gap-x-10 md:flex-row mt-5 justify-between">
           {myProjects.map((project, index) => (
@@ -125,6 +125,7 @@ export default function Home() {
         </div>
       </section>
       <motion.section
+      id="skills-session"
         initial={{ opacity: 0, y: 22 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
@@ -154,6 +155,7 @@ export default function Home() {
         </p>
       </motion.section>
       <motion.section
+      id="contact-session"
         initial={{ opacity: 0, y: 22 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -164,6 +166,7 @@ export default function Home() {
         <div className="flex mt-5 flex-col gap-5">
           {contactDetails.map((contact, index) => (
             <a
+            target="_blank"
               className={
                 contact.title !== "Location"
                   ? "cursor-pointer"
