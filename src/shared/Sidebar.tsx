@@ -12,7 +12,10 @@ const SideBar = () => {
   const isSidebarOpened = useSelector(
     (state: RootState) => state.sidebar.isOpen
   );
-  const [windowWidth, setWindowWidth] = useState(() => (typeof window !== 'undefined' ? window.innerWidth : 0));  useEffect(() => {
+  const [windowWidth, setWindowWidth] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+  useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -29,16 +32,11 @@ const SideBar = () => {
     }
   }, [windowWidth, isSidebarOpen]);
 
-  const scrolltoHash =  (element_id: string) => {
-    const element = document.getElementById(element_id)
-    element?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+  const scrolltoHash = (element_id: string) => {
+    const element = document.getElementById(element_id);
+    window.scrollTo({left: 0, top: element!.offsetTop - document.getElementsByClassName('navbar')[0].clientHeight, behavior: 'smooth'});
     dispatch(toggleSidebar());
-    if (!isSidebarOpened) {
-      document.querySelector("body")!.style.overflow = "hidden";
-    } else if (isSidebarOpened) {
-      document.querySelector("body")!.style.overflow = "auto";
-    }
-  }
+  };
 
   return (
     <AnimatePresence>
@@ -51,11 +49,37 @@ const SideBar = () => {
           transition={{ duration: 0.5 }}
           className={`${
             isSidebarOpen ? "flex flex-col" : "hidden"
-          } fixed flex flex-col items-center p-20 gap-10 text-2xl overflow-auto sidebar text-white z-[9999] h-full top-[80px] md:hidden w-full sm:w-[60%] right-0 bg-[#0d141c]`}
+          } fixed p-20 text-2xl overflow-auto sidebar text-white z-[9999] h-full top-[80px] md:hidden w-full sm:w-[60%] right-0 bg-[#0d141c]`}
         >
-          <p className="cursor-pointer" onClick={()=>scrolltoHash('project-session')}>Projects</p>
-          <p className="cursor-pointer" onClick={()=>scrolltoHash('skills-session')}>Skills</p>
-          <p className="cursor-pointer" onClick={()=>scrolltoHash('contact-session')}>Contact</p>
+          <div className="flex flex-col items-center gap-10 overflow-hidden h-full">
+            <motion.p
+              initial={{ y: "100vh" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
+              className="cursor-pointer"
+              onClick={() => scrolltoHash("project-section")}
+            >
+              Projects
+            </motion.p>
+            <motion.p
+              initial={{ y: "100vh" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.4, duration: 0.3 }}
+              className="cursor-pointer"
+              onClick={() => scrolltoHash("skills-section")}
+            >
+              Skills
+            </motion.p>
+            <motion.p
+              initial={{ y: "100vh" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.6, duration: 0.3 }}
+              className="cursor-pointer"
+              onClick={() => scrolltoHash("contact-section")}
+            >
+              Contact
+            </motion.p>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -48,6 +48,11 @@ export default function Home() {
 
   const [vantaEffect, setVantaEffect] = useState(0);
   const vantaRef = useRef(null);
+  
+  const scrolltoHash =  (element_id: string) => {
+    const element = document.getElementById(element_id)
+    window.scrollTo({left: 0, top: element!.offsetTop - document.getElementsByClassName('navbar')[0].clientHeight, behavior: 'smooth'});
+  }
 
   return (
     <motion.main
@@ -85,6 +90,7 @@ export default function Home() {
               View Resume
             </motion.button>
             <motion.button
+            onClick={()=> scrolltoHash('contact-section')}
               whileHover={{ scale: 1.2, x: [-8, 0, 8, 0, -8, 0] }}
               transition={{ duration: 0.3 }}
               className="bg-[#ffffff] text-[#0d141c]"
@@ -94,7 +100,7 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-      <section id="project-session">
+      <section id="project-section">
         <h2 className="text-2xl font-bold">Latest Projects</h2>
         <div className="flex flex-col gap-y-20 gap-x-10 md:flex-row mt-5 justify-between">
           {myProjects.map((project, index) => (
@@ -125,7 +131,7 @@ export default function Home() {
         </div>
       </section>
       <motion.section
-      id="skills-session"
+      id="skills-section"
         initial={{ opacity: 0, y: 22 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
@@ -155,7 +161,7 @@ export default function Home() {
         </p>
       </motion.section>
       <motion.section
-      id="contact-session"
+      id="contact-section"
         initial={{ opacity: 0, y: 22 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
