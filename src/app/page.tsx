@@ -169,7 +169,7 @@ export default function Home() {
         className="contact-section"
       >
         <h2 className="text-2xl font-bold">Get in Touch</h2>
-        <div className="flex mt-5 flex-col gap-5">
+        <div className="flex mt-5 flex-col gap-5 max-w-full">
           {contactDetails.map((contact, index) => (
             <a
             target="_blank"
