@@ -18,14 +18,19 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
     <div>
       <div className="main-div flex flex-col h-full w-full overflow-x-hidden">
         <NavBar />
-        <div onClick={async () => {
+        <div
+          onClick={async () => {
+            if (isSidebarOpened) {
               await dispatch(toggleSidebar());
               if (!isSidebarOpened) {
                 document.querySelector("body")!.style.overflow = "hidden";
               } else if (isSidebarOpened) {
                 document.querySelector("body")!.style.overflow = "auto";
               }
-            }} className="mt-[60px]">
+            }
+          }}
+          className="mt-[60px]"
+        >
           <div
             className={`${
               isSidebarOpened ? "blur-[1px] pointer-events-none" : ""
