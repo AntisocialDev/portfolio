@@ -49,6 +49,7 @@ const SideBar = () => {
   const setTheme = ()=> {
     let theme = localStorage.getItem('theme');
     dispatch(toggleTheme(theme=== 'light'? 'dark': 'light'));
+    dispatch(toggleSidebar());
   }
 
   return (

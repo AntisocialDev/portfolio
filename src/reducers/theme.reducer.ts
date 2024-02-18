@@ -1,4 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "./sidebar-slice";
+
+
 
 const themeSlice = createSlice({
     name: 'theme',
