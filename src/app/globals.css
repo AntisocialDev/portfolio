@@ -2,15 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+:root{
+  --text: var(--text-light);
+  --bkg: var(--bkg-light);
+  --footer: var(--footer-light);
+  --chip-text: var(--chip-light);
+  --text-light: #0d141c;
+  --chip-light-text: #0d141c;
+  --chip-dark-text: #0d141c; 
+  --text-dark: #ffffff;
+  --bkg-light: #ffffff;
+  --bkg-dark: #0d141c;
+  --footer-light: #0d141c;
+  --footer-dark: #000000;
+
+}
+
+
+[color-scheme = "light"]{
+  --text: var(--text-light);
+  --bkg: var(--bkg-light);
+  --chip-text: var(--chip-light-text);
+  --footer: var(--footer-light);
+
+}
+
+[color-scheme = "dark"]{
+  --text: var(--text-dark);
+  --bkg: var(--bkg-dark);
+  --chip-text: var(--chip-dark-text);
+  --footer: var(--footer-dark);
+
+}
+
+
+/* @media(prefers-color-scheme: dark){
+  :root{
+    --text-light: var(--text-dark);
+    --bkg: var(--bkg-dark);
+  }
+} */
+
+
 body {
   height: 100vh;
   margin: 0;
   padding: 0;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--bkg);
   font-size: 18px;
   overflow-x: hidden;
-  color: #0d141c;
+  color: var(--text);
 }
 
 
@@ -27,7 +71,7 @@ hr {
 
 
 .menu-div div{
-  border: 1.5px solid #0d141c;
+  border: 1.5px solid var(--text);
   width: 35px;
 }
 
@@ -80,7 +124,7 @@ button {
   overflow: hidden;
   border-bottom: solid 1px #ffffff;
   height: 80px;
-  background-color: #ffffff;
+  background-color: var(--bkg);
   border-bottom: solid 1.5px #e5e8eb;
 }
 
@@ -103,4 +147,9 @@ main {
   padding: 10px 15px;
   background-color: #e8edf2;
   font-size: 15px;
+  color: var(--chip-text);
+}
+
+footer{
+  background-color: var(--footer);
 }
