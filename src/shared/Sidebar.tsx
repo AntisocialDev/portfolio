@@ -1,8 +1,10 @@
 "use client";
 
 import { toggleSidebar } from "@/reducers/sidebar-slice";
+import { toggleTheme } from "@/reducers/theme.reducer";
 import { RootState } from "@/store/app-store";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -34,9 +36,20 @@ const SideBar = () => {
 
   const scrolltoHash = (element_id: string) => {
     const element = document.getElementById(element_id);
-    window.scrollTo({left: 0, top: element!.offsetTop - document.getElementsByClassName('navbar')[0].clientHeight, behavior: 'smooth'});
+    window.scrollTo({
+      left: 0,
+      top:
+        element!.offsetTop -
+        document.getElementsByClassName("navbar")[0].clientHeight,
+      behavior: "smooth",
+    });
     dispatch(toggleSidebar());
   };
+
+  const setTheme = ()=> {
+    let theme = localStorage.getItem('theme');
+    dispatch(toggleTheme(theme=== 'light'? 'dark': 'light'));
+  }
 
   return (
     <AnimatePresence>
@@ -79,6 +92,21 @@ const SideBar = () => {
             >
               Contact
             </motion.p>
+
+            <motion.div
+            onClick={setTheme}
+             initial={{ y: "100vh" }}
+             animate={{ y: 0 }}
+             transition={{ delay: 0.8, duration: 0.3 }}
+             className="flex cursor-pointer items-center justify-center w-[45px] h-[45px] p-3 bg-[#E8EDF2] rounded-[12px]">
+              <Image
+                src="/icons/theme-icon.svg"
+                alt="theme toogle"
+                width={20}
+                height={20}
+                quality={100}
+              ></Image>
+            </motion.div>
           </div>
         </motion.div>
       )}
